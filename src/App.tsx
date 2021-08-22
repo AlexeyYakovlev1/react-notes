@@ -10,7 +10,7 @@ import ModalNotification from './components/ModalNotification';
 const App: React.FC = () => {
   const dispatch = useDispatch();
   const notesStorage = JSON.parse(localStorage.getItem('notes') || '[]');
-  const viewStorage = JSON.parse(localStorage.getItem('view') || 'false'); 
+  const viewStorage = JSON.parse(localStorage.getItem('view') || 'true'); 
   const notesRedux = useSelector((state: any) => state.notes.items);
   const view = useSelector((state: any) => state.view);
 

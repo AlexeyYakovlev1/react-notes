@@ -125,11 +125,10 @@
         &-title
             font-weight: 600
             font-size: 20px
-            text-overflow: ellipsis
+            display: -webkit-box
+            -webkit-line-clamp: 2
+            -webkit-box-orient: vertical
             overflow: hidden
-            width: 100%
-            height: 1.2em
-            white-space: nowrap
 
     &__down
         display: flex
@@ -140,11 +139,12 @@
 
     &__text
         color: $button-active
-        text-overflow: ellipsis
-        overflow: hidden
         width: 100%
-        height: 1.2em
-        white-space: nowrap
+        display: -webkit-box
+        -webkit-line-clamp: 6
+        -webkit-box-orient: vertical
+        overflow: hidden
+        margin-top: 10px
 
 .note-text
     background-color: $note-background
@@ -177,13 +177,14 @@
                 font-family: $inter
                 font-weight: 600
                 margin-top: 10px
+                width: 100%
 
     &__description
         line-height: 22px
 
         &-input
             width: 100%
-            min-height: 30px
+            min-height: 50px
             background: none
             font-size: 16px
             font-family: $inter
@@ -257,13 +258,11 @@
       &:hover
         background-color: #9499a0 
 
-.done
+.done-button
   cursor: pointer
   width: 35px
   height: 35px
-  position: absolute
-  bottom: 0
-  right: 0
+  margin-top: 25px
 
   &__photo
     width: 100%
@@ -271,3 +270,5 @@
     background-size: cover
     background-position: center
     background-repeat: no-repeat
+
+@import './_media.sass'

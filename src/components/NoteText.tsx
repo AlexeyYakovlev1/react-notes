@@ -144,8 +144,8 @@ const NoteText: React.FC<INote> = ({title, time, text, create}) => {
                         {textNote}
                     </p>
                 </form>
-                {create && <div onClick={event => getData(event)} className="done">
-                  <div className="done__photo" style={{backgroundImage: 'url(/images/done.svg)'}}></div>
+                {create && <div onClick={event => getData(event)} className="done-button">
+                  <div className="done-button__photo" style={{backgroundImage: 'url(/images/done.svg)'}}></div>
                 </div>}
             </div>
         </div>
