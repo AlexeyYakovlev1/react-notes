@@ -67,6 +67,7 @@ const NoteText: React.FC<INote> = ({title, time, text, create}) => {
         notes.push(note);
         localStorage.setItem('notes', JSON.stringify(notes));
         dispatch(setNotesAction(notes));
+        alert(`Заметка "${note.title}" создана!`);
     }
 
     function changeNote(event: any) {
@@ -81,15 +82,17 @@ const NoteText: React.FC<INote> = ({title, time, text, create}) => {
         const d = new Date();
         const now = d.toDateString();
 
-        currentNote.title = titleNote;
-        currentNote.text = textNote;
-        currentNote.time = now;
-    
-        const notes = JSON.parse(localStorage.getItem('notes') || '[]');
-        notes[currentId] = currentNote;
+        if (currentNote) {
+          currentNote.title = titleNote;
+          currentNote.text = textNote;
+          currentNote.time = now;
+      
+          const notes = JSON.parse(localStorage.getItem('notes') || '[]');
+          notes[currentId] = currentNote;
 
-        localStorage.setItem('notes', JSON.stringify(notes));
-        dispatch(setNotesAction(notes));
+          localStorage.setItem('notes', JSON.stringify(notes));
+          dispatch(setNotesAction(notes));
+        }
     }
 
     return (
@@ -107,7 +110,10 @@ const NoteText: React.FC<INote> = ({title, time, text, create}) => {
                         <span className="note-text__header-time">{time}</span>
                         <input
                             value={titleNote}
-                            onChange={event => setTitleNote(event.target.value)}
+                            onChange={event => {
+                              setTitleNote(event.target.value);
+                              changeNote(event);
+                            }}
                             type="text"
                             className="note-text__header-title-input block-hidden"
                             required
@@ -125,7 +131,10 @@ const NoteText: React.FC<INote> = ({title, time, text, create}) => {
                         ref={textInputRef}
                         className="note-text__description-input block-hidden"
                         value={textNote}
-                        onChange={event => setTextNote(event.target.value)}
+                        onChange={event => {
+                          setTextNote(event.target.value);
+                          changeNote(event);
+                        }}
                     ></textarea>
                     <p
                         onClick={() => openTextInput()}
@@ -135,6 +144,9 @@ const NoteText: React.FC<INote> = ({title, time, text, create}) => {
                         {textNote}
                     </p>
                 </form>
+                {create && <div onClick={event => getData(event)} className="done">
+                  <div className="done__photo" style={{backgroundImage: 'url(/images/done.svg)'}}></div>
+                </div>}
             </div>
         </div>
     )

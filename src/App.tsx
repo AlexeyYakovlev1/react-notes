@@ -55,6 +55,10 @@ const App: React.FC = () => {
                     </Route>
                   )
                 }) : false}
+
+                <Route exact path="*">
+                  <Redirect to={"/create"} />
+                </Route>
               </>
             </Switch>
         </main>

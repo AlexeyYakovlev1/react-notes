@@ -12,7 +12,9 @@ const Header: React.FC = () => {
         const currentId = url[url.length-1];
 
         if (currentId === '' || 'create') {
-          return alert('Заметка не найдена');
+          if (currentId !== '0') {
+            return alert('Заметка не найдена');
+          }
         }
 
         const notification: any = document.querySelector('.notification');
