@@ -8,6 +8,13 @@ const Header: React.FC = () => {
     const [search, setSearch] = React.useState('');
 
     function openNotification() {
+        const url = window.location.href.split('/');
+        const currentId = url[url.length-1];
+
+        if (currentId === '' || 'create') {
+          return alert('Заметка не найдена');
+        }
+
         const notification: any = document.querySelector('.notification');
         notification.classList.remove('block-hidden')
         document.body.style.overflow = 'hidden';

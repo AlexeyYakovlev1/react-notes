@@ -22,22 +22,18 @@ const ModalNotification: React.FC<INotification> = ({title, description = '', no
     const url = window.location.href.split('/');
     const currentId = url[url.length-1];
         
-    if (currentId !== '') {
-        const notes = JSON.parse(localStorage.getItem('notes') || '[]');
-        const currentNote = notes.filter((_:any,index:any) => {
-            return index === +currentId;
-        })[0];
+    const notes = JSON.parse(localStorage.getItem('notes') || '[]');
+    const currentNote = notes.filter((_:any,index:any) => {
+        return index === +currentId;
+    })[0];
 
-        const newNotes = notes.filter((item:any,index:any) => {
-            return currentNote.title !== item.title;
-        });
+    const newNotes = notes.filter((item:any,index:any) => {
+        return currentNote.title !== item.title;
+    });
 
-        localStorage.setItem('notes', JSON.stringify(newNotes));
-        dispatch(setNotesAction(newNotes));
-        closeNotification();
-    } else {
-        alert('Заметка не найдена');
-    }
+    localStorage.setItem('notes', JSON.stringify(newNotes));
+    dispatch(setNotesAction(newNotes));
+    closeNotification();
   }
   
   return (
