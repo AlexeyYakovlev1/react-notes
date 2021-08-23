@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { setNotesAction } from '../redux/actions/index';
+import { ReactComponent as Done } from '../assets/images/done.svg';
 
 interface INote {
     title: string,
@@ -28,6 +29,8 @@ const NoteText: React.FC<INote> = ({title, time, text, create}) => {
     }
 
     function closeTitleInput(event: any) {
+        if (!event.target.classList.length) return;
+        
         if (event.target.className.includes('note-main')) {
             const currentInput: any = titleInputRef.current;
             const currentTitle: any = titleRef.current;
@@ -68,6 +71,8 @@ const NoteText: React.FC<INote> = ({title, time, text, create}) => {
         localStorage.setItem('notes', JSON.stringify(notes));
         dispatch(setNotesAction(notes));
         alert(`Заметка "${note.title}" создана!`);
+        setTitleNote('Новая заметка');
+        setTextNote('No additional text');
     }
 
     function changeNote(event: any) {
@@ -145,7 +150,9 @@ const NoteText: React.FC<INote> = ({title, time, text, create}) => {
                     </p>
                 </form>
                 {create && <div onClick={event => getData(event)} className="done-button">
-                  <div className="done-button__photo" style={{backgroundImage: 'url(/images/done.svg)'}}></div>
+                  <div className="done-button__photo">
+                    <Done />
+                  </div>
                 </div>}
             </div>
         </div>

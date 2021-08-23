@@ -1,25 +1,48 @@
 import React from 'react';
 import {useDispatch} from 'react-redux';
-import { NavLink } from 'react-router-dom';
-import {setViewNotes} from '../redux/actions/index';
+import {NavLink} from 'react-router-dom';
+import {setNotesAction, setViewNotes} from '../redux/actions/index';
+import {ReactComponent as Lines} from '../assets/images/lines-black.svg';
+import {ReactComponent as Blocks} from '../assets/images/blocks-black.svg';
+import {ReactComponent as Edit} from '../assets/images/edit-black.svg';
+import {ReactComponent as Delete} from '../assets/images/delete-black.svg';
 
 const Header: React.FC = () => {
     const dispatch = useDispatch();
     const [search, setSearch] = React.useState('');
+    const notes = JSON.parse(localStorage.getItem('notes') || '[]');
 
     function openNotification() {
         const url = window.location.href.split('/');
         const currentId = url[url.length-1];
+        const forbiddenId = ['', 'create'];
 
-        if (currentId === '' || 'create') {
-          if (currentId !== '0') {
-            return alert('Заметка не найдена');
-          }
+        if (forbiddenId.includes(currentId)) {
+          return alert('Заметка не найдена');
         }
 
         const notification: any = document.querySelector('.notification');
         notification.classList.remove('block-hidden')
         document.body.style.overflow = 'hidden';
+    }
+
+    function searchNotes(event:any) {
+      event.preventDefault();
+      let searchNotes = [];
+
+      if (search) {
+        searchNotes = notes.filter((note:any, index:any) => {
+          return note.title.toLowerCase().includes(search.trim().toLowerCase());
+        })
+  
+        dispatch(setNotesAction(searchNotes));
+      
+        if (!searchNotes.length) {
+          return alert(`Заметки ${search} не найдено`);
+        }
+      } else if (!search) {
+        dispatch(setNotesAction(notes));
+      }
     }
 
     return (
@@ -35,10 +58,7 @@ const Header: React.FC = () => {
                               }}
                               className="list-view header__settings-button"
                           >
-                              <img
-                                  src="/images/lines-black.svg"
-                                  alt="lines"
-                              />
+                            <Lines />
                           </button>
                       </NavLink>
                       <NavLink to="/">
@@ -49,27 +69,23 @@ const Header: React.FC = () => {
                               }}
                               className="blocks-view header__settings-button"
                           >
-                              <img
-                                  src="/images/blocks-black.svg"
-                                  alt="blocks"
-                              />
+                              <Blocks />
                           </button>
                       </NavLink>
                     </div>
                     <button onClick={() => openNotification()} className="header__settings-button">
-                        <img src="/images/delete-black.svg" alt="delete" />
+                        <Delete />
                     </button>
                     <button className="header__settings-button">
-                        <img src="/images/edit-black.svg" alt="edit" />
+                        <Edit />
                     </button>
                 </div>
-                <form action="/" className="header__search">
+                <form onSubmit={event => searchNotes(event)} action="/" className="header__search">
                     <input
                         value={search}
                         onChange={event => setSearch(event.target.value)}
                         type="text"
                         placeholder="Search"
-                        required
                     />
                 </form>
             </div>

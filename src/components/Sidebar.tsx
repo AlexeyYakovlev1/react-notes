@@ -18,7 +18,6 @@ const Sidebar: React.FC<ISidebar> = ({notes, view}) => {
                             key={index}
                             id={index}
                             title={item.title}
-                            time={item.time}
                             text={item.text}
                         />
                     )

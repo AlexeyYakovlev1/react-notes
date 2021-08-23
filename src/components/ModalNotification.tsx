@@ -1,6 +1,7 @@
 import React from 'react';
 import {useDispatch} from 'react-redux';
 import {setNotesAction} from '../redux/actions/index';
+import {ReactComponent as Close} from '../assets/images/close.svg';
 
 interface INotification {
   title: string,
@@ -21,7 +22,7 @@ const ModalNotification: React.FC<INotification> = ({title, description = '', no
   function deleteNote() {
     const url = window.location.href.split('/');
     const currentId = url[url.length-1];
-        
+    
     const notes = JSON.parse(localStorage.getItem('notes') || '[]');
     const currentNote = notes.filter((_:any,index:any) => {
         return index === +currentId;
@@ -42,7 +43,7 @@ const ModalNotification: React.FC<INotification> = ({title, description = '', no
         <header className="notification__content-header">
           <h3 className="notification__content-title">{title}</h3>
           <span onClick={() => closeNotification()} className="notification__content-close">
-            <img src="/images/close.svg" alt="close" />
+            <Close />
           </span>
         </header>
         <div className="notification__content-info">
