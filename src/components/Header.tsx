@@ -1,7 +1,7 @@
 import React from 'react';
 import {useDispatch} from 'react-redux';
 import {NavLink} from 'react-router-dom';
-import {setNotesAction, setViewNotes} from '../redux/actions/index';
+import {setNotesAction, setViewNotes, setEditAction} from '../redux/actions/index';
 import {ReactComponent as Lines} from '../assets/images/lines-black.svg';
 import {ReactComponent as Blocks} from '../assets/images/blocks-black.svg';
 import {ReactComponent as Edit} from '../assets/images/edit-black.svg';
@@ -45,6 +45,10 @@ const Header: React.FC = () => {
       }
     }
 
+    function editNote() {
+      dispatch(setEditAction(true));
+    }
+
     return (
         <header className="header">
             <div className="container">
@@ -76,7 +80,7 @@ const Header: React.FC = () => {
                     <button onClick={() => openNotification()} className="header__settings-button">
                         <Delete />
                     </button>
-                    <button className="header__settings-button">
+                    <button onClick={() => editNote()} className="header__settings-button">
                         <Edit />
                     </button>
                 </div>

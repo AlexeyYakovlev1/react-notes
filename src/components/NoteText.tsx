@@ -1,6 +1,6 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { setNotesAction } from '../redux/actions/index';
+import { useDispatch, useSelector } from 'react-redux';
+import { setNotesAction, setEditAction } from '../redux/actions/index';
 import { ReactComponent as Done } from '../assets/images/done.svg';
 
 interface INote {
@@ -17,46 +17,33 @@ const NoteText: React.FC<INote> = ({title, time, text, create}) => {
     const titleRef = React.useRef(null);
     const textInputRef = React.useRef(null);
     const textRef = React.useRef(null);
-    const dispatch = useDispatch()
-
-    function openTitleInput() {
-        const currentInputTitle: any = titleInputRef.current;
-        const currentTitle: any = titleRef.current;
+    const dispatch = useDispatch();
+    const edit = useSelector((state:any) => state.edit);
+    
+    function closeNoteInput(event: any) {
+      if (!event.target.classList.length) return;
         
-        currentInputTitle.classList.remove('block-hidden');
-        currentTitle.classList.add('block-hidden');
-        currentInputTitle.focus();
-    }
+      if (event.target.className.includes('note-main')) {
+          const currentInput: any = titleInputRef.current;
+          const currentTitle: any = titleRef.current;
+          const currentInputText: any = textInputRef.current;
+          const currentText: any = textRef.current;
+           
+          currentInput.classList.add('block-hidden');
+          currentTitle.classList.remove('block-hidden');
+          currentInputText.classList.add('block-hidden');
+          currentText.classList.remove("block-hidden");
 
-    function closeTitleInput(event: any) {
-        if (!event.target.classList.length) return;
-        
-        if (event.target.className.includes('note-main')) {
-            const currentInput: any = titleInputRef.current;
-            const currentTitle: any = titleRef.current;
-            const currentInputText: any = textInputRef.current;
-            const currentText: any = textRef.current;
-            
-            currentInputText.classList.add('block-hidden');
-            currentText.classList.remove('block-hidden');
-            
-            currentInput.classList.add('block-hidden');
-            currentTitle.classList.remove('block-hidden');
-            currentTitle.focus();
-        }
-    }
-
-    function openTextInput() {
-        const currentInput: any = textInputRef.current;
-        const currentText: any = textRef.current;
-
-        currentInput.classList.remove('block-hidden');
-        currentText.classList.add('block-hidden');
-        currentInput.focus();
+          dispatch(setEditAction(false));          
+      }
     }
 
     function getData(event: any) {
         event.preventDefault();
+
+        if (titleNote === title || textNote === text) {
+          return alert('Поменяйте заголовок или описание для заметки');
+        }
 
         const d = new Date();
         const now = d.toDateString();
@@ -91,10 +78,10 @@ const NoteText: React.FC<INote> = ({title, time, text, create}) => {
           currentNote.title = titleNote;
           currentNote.text = textNote;
           currentNote.time = now;
-      
-          const notes = JSON.parse(localStorage.getItem('notes') || '[]');
-          notes[currentId] = currentNote;
 
+          const notes = JSON.parse(localStorage.getItem('notes') || '[]');
+          
+          notes[currentId] = currentNote;
           localStorage.setItem('notes', JSON.stringify(notes));
           dispatch(setNotesAction(notes));
         }
@@ -102,7 +89,7 @@ const NoteText: React.FC<INote> = ({title, time, text, create}) => {
 
     return (
         <div
-          onClick={event => closeTitleInput(event)}
+          onClick={event => closeNoteInput(event)}
           className="note-text note-main"
         >
             <div className="container">
@@ -120,21 +107,20 @@ const NoteText: React.FC<INote> = ({title, time, text, create}) => {
                               changeNote(event);
                             }}
                             type="text"
-                            className="note-text__header-title-input block-hidden"
+                            className={edit ? "note-text__header-title-input" : "note-text__header-title-input block-hidden"}
                             required
                             ref={titleInputRef}
                         />
                         <h2
                             ref={titleRef}
-                            onClick={() => openTitleInput()}
-                            className="note-text__header-title"
+                            className={edit ? "note-text__header-title block-hidden" : "note-text__header-title"}
                         >
                             {titleNote}
                         </h2>
                     </header>
                     <textarea
                         ref={textInputRef}
-                        className="note-text__description-input block-hidden"
+                        className={edit ? "note-text__description-input" : "note-text__description-input block-hidden"}
                         value={textNote}
                         onChange={event => {
                           setTextNote(event.target.value);
@@ -142,9 +128,8 @@ const NoteText: React.FC<INote> = ({title, time, text, create}) => {
                         }}
                     ></textarea>
                     <p
-                        onClick={() => openTextInput()}
                         ref={textRef}
-                        className="note-text__description"
+                        className={edit ? "note-text__description block-hidden" : "note-text__description"}
                     >
                         {textNote}
                     </p>

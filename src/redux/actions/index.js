@@ -12,3 +12,9 @@ export const setNotesAction = (notes) => {
     }
 }
 
+export const setEditAction = (edit) => {
+  return {
+      type: 'SET_EDIT',
+      payload: edit
+  }
+}
