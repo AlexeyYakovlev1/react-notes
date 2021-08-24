@@ -35,6 +35,7 @@ const ModalNotification: React.FC<INotification> = ({title, description = '', no
     localStorage.setItem('notes', JSON.stringify(newNotes));
     dispatch(setNotesAction(newNotes));
     closeNotification();
+    alert(`Заметка ${currentNote.title} успешно удалена`);
   }
   
   return (

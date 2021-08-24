@@ -28,6 +28,7 @@ const Header: React.FC = () => {
 
     function searchNotes(event:any) {
       event.preventDefault();
+
       let searchNotes = [];
 
       if (search) {
@@ -85,12 +86,14 @@ const Header: React.FC = () => {
                     </button>
                 </div>
                 <form onSubmit={event => searchNotes(event)} action="/" className="header__search">
-                    <input
-                        value={search}
-                        onChange={event => setSearch(event.target.value)}
-                        type="text"
-                        placeholder="Search"
-                    />
+                    <NavLink to="/">
+                      <input
+                          value={search}
+                          onChange={event => setSearch(event.target.value)}
+                          type="text"
+                          placeholder="Search"
+                      />
+                    </NavLink>
                 </form>
             </div>
         </header>
