@@ -49,6 +49,7 @@ const NoteText: React.FC<INote> = ({title, time, text, create}) => {
         const now = d.toDateString();
         const notes = JSON.parse(localStorage.getItem('notes') || '[]');
         const note = {
+            id: '_' + Math.random().toString(36).substr(2, 9),
             title: titleNote,
             text: textNote,
             time: now
@@ -66,9 +67,9 @@ const NoteText: React.FC<INote> = ({title, time, text, create}) => {
         event.preventDefault();
       
         const urlArr:String[] = window.location.href.split('/');
-        const currentId:number = +urlArr[urlArr.length-1];
+        const currentId:String = urlArr[urlArr.length-1];
         const currentNote = JSON.parse(localStorage.getItem('notes') || '[]').filter((item:any,index:any) => {
-            return index === currentId;
+            return item.id === currentId;
         })[0];
 
         const d = new Date();
@@ -80,8 +81,16 @@ const NoteText: React.FC<INote> = ({title, time, text, create}) => {
           currentNote.time = now;
 
           const notes = JSON.parse(localStorage.getItem('notes') || '[]');
-          
-          notes[currentId] = currentNote;
+          let currentNoteIndex = 0;
+
+          notes.map((item:any) => {
+              if (item.id === currentId) {
+                currentNoteIndex = notes.indexOf(item);
+              };
+          })
+
+          notes[currentNoteIndex] = currentNote;
+
           localStorage.setItem('notes', JSON.stringify(notes));
           dispatch(setNotesAction(notes));
         }

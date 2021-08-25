@@ -24,8 +24,8 @@ const ModalNotification: React.FC<INotification> = ({title, description = '', no
     const currentId = url[url.length-1];
     
     const notes = JSON.parse(localStorage.getItem('notes') || '[]');
-    const currentNote = notes.filter((_:any,index:any) => {
-        return index === +currentId;
+    const currentNote = notes.filter((item:any,index:any) => {
+        return item.id === currentId;
     })[0];
 
     const newNotes = notes.filter((item:any,index:any) => {

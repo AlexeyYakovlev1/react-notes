@@ -16,7 +16,7 @@ const Sidebar: React.FC<ISidebar> = ({notes, view}) => {
                     return (
                         <ListItem
                             key={index}
-                            id={index}
+                            id={item.id}
                             title={item.title}
                             text={item.text}
                         />

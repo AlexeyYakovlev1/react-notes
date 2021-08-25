@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import { createStore, compose } from "redux";
 import {Provider} from 'react-redux';
 import allReducers from './redux/reducers/index';
+import Load from './components/Loader';
 
 declare global {
   interface Window {
@@ -18,6 +19,7 @@ const store = createStore(allReducers, composeEnhancers());
 
 ReactDOM.render(
   <React.StrictMode>
+    <Load />
     <Provider store={store}>
       <App />
     </Provider>

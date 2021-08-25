@@ -45,7 +45,7 @@ const App: React.FC = () => {
                 </Route>
                 {notesRedux.length ? notesRedux.map((item: any,index: any) => {
                   return (
-                    <Route exact path={"/note/"+index} key={index}>
+                    <Route exact path={"/note/"+item.id} key={index}>
                       <NoteText
                         title={item.title}
                         time={item.time}
