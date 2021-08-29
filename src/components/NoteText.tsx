@@ -2,15 +2,17 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setNotesAction, setEditAction } from '../redux/actions/index';
 import { ReactComponent as Done } from '../assets/images/done.svg';
+import Image from './Image';
 
 interface INote {
     title: string,
     time: string,
     text: string,
-    create: boolean
+    create: boolean,
+    photos: Object[]
 }
 
-const NoteText: React.FC<INote> = ({title, time, text, create}) => {
+const NoteText: React.FC<INote> = ({title, time, text, create, photos}) => {
     const [titleNote, setTitleNote] = React.useState(title);
     const [textNote, setTextNote] = React.useState(text);
     const titleInputRef = React.useRef(null);
@@ -19,6 +21,7 @@ const NoteText: React.FC<INote> = ({title, time, text, create}) => {
     const textRef = React.useRef(null);
     const dispatch = useDispatch();
     const edit = useSelector((state:any) => state.edit);
+    const images = useSelector((state:any) => state.images);
     
     function closeNoteInput(event: any) {
       if (!event.target.classList.length) return;
@@ -48,13 +51,20 @@ const NoteText: React.FC<INote> = ({title, time, text, create}) => {
         const d = new Date();
         const now = d.toDateString();
         const notes = JSON.parse(localStorage.getItem('notes') || '[]');
+        const noteId = '_' + Math.random().toString(36).substr(2, 9);
+        
+        if (images.id === 'create') {
+          images.id = noteId;
+        }
+        
         const note = {
-            id: '_' + Math.random().toString(36).substr(2, 9),
+            id: noteId,
             title: titleNote,
             text: textNote,
-            time: now
+            time: now,
+            images
         };
-
+        
         notes.push(note);
         localStorage.setItem('notes', JSON.stringify(notes));
         dispatch(setNotesAction(notes));
@@ -128,6 +138,7 @@ const NoteText: React.FC<INote> = ({title, time, text, create}) => {
                         </h2>
                     </header>
                     <textarea
+                        wrap="hard"
                         ref={textInputRef}
                         className={edit ? "note-text__description-input" : "note-text__description-input block-hidden"}
                         value={textNote}
@@ -148,6 +159,13 @@ const NoteText: React.FC<INote> = ({title, time, text, create}) => {
                     <Done />
                   </div>
                 </div>}
+                <ul className="images__list">
+                  {!create && photos.length && photos.map((photo:any, index:any) => {
+                    return ( 
+                      <Image key={index} src={photo.src} />
+                    )
+                  })}
+                </ul>
             </div>
         </div>
     )
