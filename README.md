@@ -1,5 +1,5 @@
 # Веб приложение "Заметки"
-Это техническое задание на React
+Техническое задание на React. Клон заметок из MacOS.
 
 # С помощью чего было сделано?
 React, Redux, React-Router-Dom, localStorage, React Hooks
