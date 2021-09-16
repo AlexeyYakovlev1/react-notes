@@ -160,11 +160,11 @@ const NoteText: React.FC<INote> = ({title, time, text, create, photos}) => {
                   </div>
                 </div>}
                 <ul className="images__list">
-                  {!create && photos.length && photos.map((photo:any, index:any) => {
+                  {!create && photos.length ? photos.map((photo:any, index:any) => {
                     return ( 
                       <Image key={index} src={photo.src} />
                     )
-                  })}
+                  }) : false}
                 </ul>
             </div>
         </div>

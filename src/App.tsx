@@ -48,7 +48,7 @@ const App: React.FC = () => {
                   return (
                     <Route exact path={"/note/"+item.id} key={index}>
                       <NoteText
-                        photos={item.images.images}
+                        photos={item.images.images || []}
                         title={item.title}
                         time={item.time}
                         text={item.text}
