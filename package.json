@@ -1,6 +1,6 @@
 {
-  "homepage": "http://AlexeyYakovlev1.github.io/React-Notes",
-  "name": "notes",
+  "homepage": "http://alexeyyakovlev1.github.io/React-Notes",
+  "name": "react-notes",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
