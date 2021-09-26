@@ -1,0 +1,30 @@
+{
+  "files": {
+    "main.css": "/React-Notes/static/css/main.0d733baa.chunk.css",
+    "main.js": "/React-Notes/static/js/main.11a188aa.chunk.js",
+    "main.js.map": "/React-Notes/static/js/main.11a188aa.chunk.js.map",
+    "runtime-main.js": "/React-Notes/static/js/runtime-main.bcdf5e1a.js",
+    "runtime-main.js.map": "/React-Notes/static/js/runtime-main.bcdf5e1a.js.map",
+    "static/js/2.d8a7b8ee.chunk.js": "/React-Notes/static/js/2.d8a7b8ee.chunk.js",
+    "static/js/2.d8a7b8ee.chunk.js.map": "/React-Notes/static/js/2.d8a7b8ee.chunk.js.map",
+    "static/js/3.e21bad6d.chunk.js": "/React-Notes/static/js/3.e21bad6d.chunk.js",
+    "static/js/3.e21bad6d.chunk.js.map": "/React-Notes/static/js/3.e21bad6d.chunk.js.map",
+    "index.html": "/React-Notes/index.html",
+    "static/css/main.0d733baa.chunk.css.map": "/React-Notes/static/css/main.0d733baa.chunk.css.map",
+    "static/js/2.d8a7b8ee.chunk.js.LICENSE.txt": "/React-Notes/static/js/2.d8a7b8ee.chunk.js.LICENSE.txt",
+    "static/media/blocks-black.6e76e59b.svg": "/React-Notes/static/media/blocks-black.6e76e59b.svg",
+    "static/media/close.255b52ef.svg": "/React-Notes/static/media/close.255b52ef.svg",
+    "static/media/delete-black.8a840324.svg": "/React-Notes/static/media/delete-black.8a840324.svg",
+    "static/media/done.d6d69a6b.svg": "/React-Notes/static/media/done.d6d69a6b.svg",
+    "static/media/edit-black.f531d293.svg": "/React-Notes/static/media/edit-black.f531d293.svg",
+    "static/media/image.088250f2.svg": "/React-Notes/static/media/image.088250f2.svg",
+    "static/media/lines-black.2e0cbb99.svg": "/React-Notes/static/media/lines-black.2e0cbb99.svg",
+    "static/media/load.90aa511c.gif": "/React-Notes/static/media/load.90aa511c.gif"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.bcdf5e1a.js",
+    "static/js/2.d8a7b8ee.chunk.js",
+    "static/css/main.0d733baa.chunk.css",
+    "static/js/main.11a188aa.chunk.js"
+  ]
+}
