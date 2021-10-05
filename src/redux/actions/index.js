@@ -18,11 +18,3 @@ export const setEditAction = edit => {
       payload: edit
   }
 }
-
-export const setImagesAction = (images, id) => {
-  return {
-    type: 'SET_IMAGES',
-    payload: images,
-    noteId: id
-  }
-}

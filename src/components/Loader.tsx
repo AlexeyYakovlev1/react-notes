@@ -6,7 +6,7 @@ const Load: React.FC = () => {
 
     document.addEventListener('DOMContentLoaded', () => {
         setLoading(false);
-        document.body.style.overflow = 'visible';
+        document.body.style.overflow = 'hidden';
     })
 
     return (

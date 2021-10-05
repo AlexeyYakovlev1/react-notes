@@ -37,7 +37,6 @@ const App: React.FC = () => {
               <>
                 <Route exact path="/create">
                   <NoteText
-                    photos={[{}]}
                     title='Новая заметка'
                     time={new Date().toDateString()}
                     text='No additional text'
@@ -48,7 +47,6 @@ const App: React.FC = () => {
                   return (
                     <Route exact path={"/note/"+item.id} key={index}>
                       <NoteText
-                        photos={item.images.images || []}
                         title={item.title}
                         time={item.time}
                         text={item.text}

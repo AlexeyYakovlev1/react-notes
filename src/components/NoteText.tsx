@@ -8,11 +8,10 @@ interface INote {
     title: string,
     time: string,
     text: string,
-    create: boolean,
-    photos: Object[]
+    create: boolean
 }
 
-const NoteText: React.FC<INote> = ({title, time, text, create, photos}) => {
+const NoteText: React.FC<INote> = ({title, time, text, create}) => {
     const [titleNote, setTitleNote] = React.useState(title);
     const [textNote, setTextNote] = React.useState(text);
     const titleInputRef = React.useRef(null);
@@ -21,7 +20,6 @@ const NoteText: React.FC<INote> = ({title, time, text, create, photos}) => {
     const textRef = React.useRef(null);
     const dispatch = useDispatch();
     const edit = useSelector((state:any) => state.edit);
-    const images = useSelector((state:any) => state.images);
     
     function closeNoteInput(event: any) {
       if (!event.target.classList.length) return;
@@ -53,16 +51,11 @@ const NoteText: React.FC<INote> = ({title, time, text, create, photos}) => {
         const notes = JSON.parse(localStorage.getItem('notes') || '[]');
         const noteId = '_' + Math.random().toString(36).substr(2, 9);
         
-        if (images.id === 'create') {
-          images.id = noteId;
-        }
-        
         const note = {
             id: noteId,
             title: titleNote,
             text: textNote,
-            time: now,
-            images
+            time: now
         };
         
         notes.push(note);
@@ -159,13 +152,6 @@ const NoteText: React.FC<INote> = ({title, time, text, create, photos}) => {
                     <Done />
                   </div>
                 </div>}
-                <ul className="images__list">
-                  {!create && photos.length ? photos.map((photo:any, index:any) => {
-                    return ( 
-                      <Image key={index} src={photo.src} />
-                    )
-                  }) : false}
-                </ul>
             </div>
         </div>
     )
