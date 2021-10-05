@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/react-notes/static/css/main.0d733baa.chunk.css",
-    "main.js": "/react-notes/static/js/main.11a188aa.chunk.js",
-    "main.js.map": "/react-notes/static/js/main.11a188aa.chunk.js.map",
+    "main.js": "/react-notes/static/js/main.b0e67e87.chunk.js",
+    "main.js.map": "/react-notes/static/js/main.b0e67e87.chunk.js.map",
     "runtime-main.js": "/react-notes/static/js/runtime-main.23ab6f12.js",
     "runtime-main.js.map": "/react-notes/static/js/runtime-main.23ab6f12.js.map",
     "static/js/2.d8a7b8ee.chunk.js": "/react-notes/static/js/2.d8a7b8ee.chunk.js",
@@ -17,7 +17,6 @@
     "static/media/delete-black.8a840324.svg": "/react-notes/static/media/delete-black.8a840324.svg",
     "static/media/done.d6d69a6b.svg": "/react-notes/static/media/done.d6d69a6b.svg",
     "static/media/edit-black.f531d293.svg": "/react-notes/static/media/edit-black.f531d293.svg",
-    "static/media/image.088250f2.svg": "/react-notes/static/media/image.088250f2.svg",
     "static/media/lines-black.2e0cbb99.svg": "/react-notes/static/media/lines-black.2e0cbb99.svg",
     "static/media/load.90aa511c.gif": "/react-notes/static/media/load.90aa511c.gif"
   },
@@ -25,6 +24,6 @@
     "static/js/runtime-main.23ab6f12.js",
     "static/js/2.d8a7b8ee.chunk.js",
     "static/css/main.0d733baa.chunk.css",
-    "static/js/main.11a188aa.chunk.js"
+    "static/js/main.b0e67e87.chunk.js"
   ]
 }
