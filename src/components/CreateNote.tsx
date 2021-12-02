@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import ReactMarkdown from 'react-markdown';
 
 const CreateNote: React.FC = () => {
     const url = window.location.href.split('/');
@@ -11,11 +12,7 @@ const CreateNote: React.FC = () => {
                 <h2 className="note__header-title">Новая заметка</h2>
               </header>
               <div className="note__down">
-<<<<<<< HEAD
-=======
-                  {/* <span className="note__time">{now}</span> */}
->>>>>>> e2f395fdea78a990db2b8f731cc3818eb0f79b0e
-                  <p className="note__text">No additional text</p>
+                  <ReactMarkdown className="note__text">No additional text</ReactMarkdown>
               </div>
           </div>
         </NavLink>

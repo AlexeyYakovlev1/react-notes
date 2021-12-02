@@ -2,11 +2,8 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setNotesAction, setEditAction } from '../redux/actions/index';
 import { ReactComponent as Done } from '../assets/images/done.svg';
-<<<<<<< HEAD
 import {useHistory} from "react-router-dom";
-=======
-import Image from './Image';
->>>>>>> e2f395fdea78a990db2b8f731cc3818eb0f79b0e
+import ReactMarkdown from "react-markdown";
 
 interface INote {
     title: string,
@@ -16,10 +13,7 @@ interface INote {
 }
 
 const NoteText: React.FC<INote> = ({title, time, text, create}) => {
-<<<<<<< HEAD
     const history = useHistory();
-=======
->>>>>>> e2f395fdea78a990db2b8f731cc3818eb0f79b0e
     const [titleNote, setTitleNote] = React.useState(title);
     const [textNote, setTextNote] = React.useState(text);
     const titleInputRef = React.useRef(null);
@@ -28,11 +22,6 @@ const NoteText: React.FC<INote> = ({title, time, text, create}) => {
     const textRef = React.useRef(null);
     const dispatch = useDispatch();
     const edit = useSelector((state:any) => state.edit);
-<<<<<<< HEAD
-
-=======
-    
->>>>>>> e2f395fdea78a990db2b8f731cc3818eb0f79b0e
     function closeNoteInput(event: any) {
       if (!event.target.classList.length) return;
         
@@ -74,10 +63,7 @@ const NoteText: React.FC<INote> = ({title, time, text, create}) => {
         localStorage.setItem('notes', JSON.stringify(notes));
         dispatch(setNotesAction(notes));
         alert(`Заметка "${note.title}" создана!`);
-<<<<<<< HEAD
         history.push(`/note/${note.id}`);
-=======
->>>>>>> e2f395fdea78a990db2b8f731cc3818eb0f79b0e
         setTitleNote('Новая заметка');
         setTextNote('No additional text');
     }
@@ -102,11 +88,7 @@ const NoteText: React.FC<INote> = ({title, time, text, create}) => {
           const notes = JSON.parse(localStorage.getItem('notes') || '[]');
           let currentNoteIndex = 0;
 
-<<<<<<< HEAD
           notes.forEach((item:any) => {
-=======
-          notes.map((item:any) => {
->>>>>>> e2f395fdea78a990db2b8f731cc3818eb0f79b0e
               if (item.id === currentId) {
                 currentNoteIndex = notes.indexOf(item);
               };
@@ -120,7 +102,6 @@ const NoteText: React.FC<INote> = ({title, time, text, create}) => {
     }
 
     return (
-<<<<<<< HEAD
         <>
             <div
                 onClick={event => closeNoteInput(event)}
@@ -166,7 +147,7 @@ const NoteText: React.FC<INote> = ({title, time, text, create}) => {
                             ref={textRef}
                             className={edit ? "note-text__description block-hidden" : "note-text__description"}
                         >
-                            {textNote}
+                            <ReactMarkdown>{textNote}</ReactMarkdown>
                         </p>
                     </form>
                     {create && <div onClick={event => getData(event)} className="done-button">
@@ -177,62 +158,6 @@ const NoteText: React.FC<INote> = ({title, time, text, create}) => {
                 </div>
             </div>
         </>
-=======
-        <div
-          onClick={event => closeNoteInput(event)}
-          className="note-text note-main"
-        >
-            <div className="container">
-                <form
-                    onSubmit={event => create ? getData(event) : changeNote(event)}
-                    action="/"
-                    className="note-text__form"
-                >
-                    <header className="note-text__header">
-                        <span className="note-text__header-time">{time}</span>
-                        <input
-                            value={titleNote}
-                            onChange={event => {
-                              setTitleNote(event.target.value);
-                              changeNote(event);
-                            }}
-                            type="text"
-                            className={edit ? "note-text__header-title-input" : "note-text__header-title-input block-hidden"}
-                            required
-                            ref={titleInputRef}
-                        />
-                        <h2
-                            ref={titleRef}
-                            className={edit ? "note-text__header-title block-hidden" : "note-text__header-title"}
-                        >
-                            {titleNote}
-                        </h2>
-                    </header>
-                    <textarea
-                        wrap="hard"
-                        ref={textInputRef}
-                        className={edit ? "note-text__description-input" : "note-text__description-input block-hidden"}
-                        value={textNote}
-                        onChange={event => {
-                          setTextNote(event.target.value);
-                          changeNote(event);
-                        }}
-                    ></textarea>
-                    <p
-                        ref={textRef}
-                        className={edit ? "note-text__description block-hidden" : "note-text__description"}
-                    >
-                        {textNote}
-                    </p>
-                </form>
-                {create && <div onClick={event => getData(event)} className="done-button">
-                  <div className="done-button__photo">
-                    <Done />
-                  </div>
-                </div>}
-            </div>
-        </div>
->>>>>>> e2f395fdea78a990db2b8f731cc3818eb0f79b0e
     )
 }
 
